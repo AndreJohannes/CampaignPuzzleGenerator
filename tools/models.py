@@ -2,10 +2,11 @@
 """
 
 import pylab as pl
-import pymc as mc
+
 from pymc import gp
 
-import data
+from tools import data
+
 reload(data)
 
 def gp_puzzle_nub(diff_degree=2., amp=1., scale=1.5, steps=100):
