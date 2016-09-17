@@ -30,7 +30,7 @@ class Tiles:
         return field
 
     def _make_list(self):
-        if self.pool == None:
+        if self.pool is None:
             self.pool = [(0, 0)]
             self.field[0][0] = "l"
         take = self.pool[random.randint(0, len(self.pool) - 1)]
@@ -47,7 +47,7 @@ class Tiles:
             self._add_list(i, j + 1, grid)
 
     def _add_list(self, i, j, grid):
-        if self.pool == None:
+        if self.pool is None:
             self.pool = []
         if (i < 0 or i >= self.nx or j < 0 or j >= self.ny):
             return
