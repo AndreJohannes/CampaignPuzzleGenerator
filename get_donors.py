@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import os
-
+import json
 import httplib2
 import oauth2client
 from apiclient import discovery
@@ -9,19 +9,21 @@ from oauth2client import client
 from oauth2client import tools
 
 import get_flag
-
 import argparse
+
 flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
 
 
 class Donors:
-    SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+    SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly' + \
+             ' https://www.googleapis.com/auth/spreadsheets.readonly'
     CLIENT_SECRET_FILE = 'client_secret.json'
-    APPLICATION_NAME = 'Google Sheets API Python Quickstart'
+    APPLICATION_NAME = 'Sheet API'
     SPREADSHEET_ID = '1rzXA07j23NHxE8wHgSy7ugLetHKLhBJN_jH3za0zLmA'
     RANGE = 'Test!A2:E'
 
     def get_donors(self):
+
         credentials = self._get_credentials()
         http = credentials.authorize(httplib2.Http())
         discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
@@ -44,6 +46,7 @@ class Donors:
 
         return retArray
 
+
     def _get_credentials(self):
         """Gets valid user credentials from storage.
 
@@ -58,7 +61,7 @@ class Donors:
         if not os.path.exists(credential_dir):
             os.makedirs(credential_dir)
         credential_path = os.path.join(credential_dir,
-                                       'sheets.googleapis.com-python-quickstart.json')
+                                       'sheets.googleapis.json')
 
         store = oauth2client.file.Storage(credential_path)
         credentials = store.get()
@@ -71,3 +74,36 @@ class Donors:
                 credentials = tools.run_flow(flow, store)
             print('Storing credentials to ' + credential_path)
         return credentials
+
+    def has_new(self):
+        credentials = self._get_credentials()
+        http = credentials.authorize(httplib2.Http())
+        drive_service = discovery.build('drive', 'v3', http=http)
+        latest_revision = self._get_latest_revision(drive_service)
+        last_revisionid = self._get_last_revisionid()
+        if latest_revision["id"] != last_revisionid:
+            self._save_revision(latest_revision)
+            return True
+        return False
+
+    def _get_latest_revision(self,drive_service):
+        response = drive_service.revisions().list(fileId=self.SPREADSHEET_ID).execute()
+        return response["revisions"].pop()
+
+    def _get_last_revisionid(self):
+        if not os.path.isfile('/tmp/revision_{}.json'.format(self.SPREADSHEET_ID)):
+            return 0
+        with open('/tmp/revision_{}.json'.format(self.SPREADSHEET_ID), 'r') as infile:
+            data = json.load(infile)
+            if "id" in data:
+                return data["id"]
+            else:
+                return 0
+        return 0
+
+    def _save_revision(self, data):
+        with open('/tmp/revision_{}.json'.format(self.SPREADSHEET_ID), 'w') as outfile:
+            json.dump(data, outfile)
+
+if __name__ == "__main__":
+    print(Donors().has_new())

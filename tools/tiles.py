@@ -14,10 +14,10 @@ class Tiles:
             self._make_list()
 
     def get_path(self, i, j):
-        path = list([(x[0]+0.5, x[1]+0.5) for x in self.grid[i][j]["r"]])
+        path = list([(x[0]+0.125, x[1]+0.125) for x in self.grid[i][j]["r"]])
         path.extend(self.grid[i + 1][j]["d"])
         path.extend(reversed(self.grid[i][j + 1]["r"]))
-        path.extend([(x[0]+0.5, x[1]+0.5) for x in reversed(self.grid[i][j]["d"])])
+        path.extend([(x[0]+0.125, x[1]+0.125) for x in reversed(self.grid[i][j]["d"])])
         return path
 
     def _make_field(self):
