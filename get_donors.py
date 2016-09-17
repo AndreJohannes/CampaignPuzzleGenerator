@@ -10,6 +10,9 @@ from oauth2client import tools
 
 import get_flag
 
+import argparse
+flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+
 
 class Donors:
     SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
@@ -62,9 +65,9 @@ class Donors:
         if not credentials or credentials.invalid:
             flow = client.flow_from_clientsecrets(self.CLIENT_SECRET_FILE, self.SCOPES)
             flow.user_agent = self.APPLICATION_NAME
-            # if flags:
-            #    credentials = tools.run_flow(flow, store, flags)
-            # else:  # Needed only for compatibility with Python 2.6
-            credentials = tools.run(flow, store)
+            if flags:
+                credentials = tools.run_flow(flow, store, flags)
+            else:  # Needed only for compatibility with Python 2.6
+                credentials = tools.run_flow(flow, store)
             print('Storing credentials to ' + credential_path)
         return credentials
