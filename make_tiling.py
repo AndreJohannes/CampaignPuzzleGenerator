@@ -44,8 +44,10 @@ class Tiling:
             for i in range(0, int(donor["amount"])/10):
                 if len(cluster) > 0:
                     take = cluster[random.randint(0, len(cluster) - 1)]
-                else:
+                elif len(pool) > 0:
                     take = pool[random.randint(0, len(pool) - 1)]
+                else:
+                    continue
                 mark_and_remove(take, donor)
                 add_neighbors(take, cluster)
 

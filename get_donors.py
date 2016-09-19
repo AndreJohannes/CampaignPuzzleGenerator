@@ -20,7 +20,7 @@ class Donors:
     CLIENT_SECRET_FILE = 'client_secret.json'
     APPLICATION_NAME = 'Sheet API'
     SPREADSHEET_ID = '1rzXA07j23NHxE8wHgSy7ugLetHKLhBJN_jH3za0zLmA'
-    RANGE = 'Test!A2:E'
+    RANGE = 'Production!A2:E'
 
     def get_donors(self):
 
