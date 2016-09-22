@@ -26,7 +26,7 @@ class Tiling:
             add((pos[0] - 1, pos[1]), cluster)
             add((pos[0], pos[1] - 1), cluster)
 
-        random.seed(2)
+        random.seed(4)
         clusters = {}
         array = []
         pool = []
