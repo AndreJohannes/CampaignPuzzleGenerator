@@ -37,11 +37,13 @@ class Tiling:
                 pool.append((i, j))
             array.append(row)
 
+        residue = 0
         for donor in list:
             if not clusters.has_key(donor["flag"]):
                 clusters[donor["flag"]] = []
             cluster = clusters[donor["flag"]]
-            for i in range(0, int(donor["amount"])/10):
+            count, residue = divmod(int(donor["amount"]) + residue, 10)
+            for i in range(0, count):
                 if len(cluster) > 0:
                     take = cluster[random.randint(0, len(cluster) - 1)]
                 elif len(pool) > 0:
