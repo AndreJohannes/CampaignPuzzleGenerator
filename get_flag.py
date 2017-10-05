@@ -41,7 +41,7 @@ class Flag:
         Flags.mexico: {"name": "mexico", "file": "mexico.png"},
         Flags.spain: {"name": "spain", "file": "spain.png"},
         Flags.australia: {"name": "australia", "file": "australia.png"},
-        Flags.newzealand: {"name": "new zealand", "file": "newzeland.png"},
+        Flags.newzealand: {"name": "new zealand", "file": "newzealand.png"},
         Flags.argentina: {"name": "argentina", "file": "argentina.png"},
         Flags.honduras: {"name": "honduras", "file": "honduras.png"},
         Flags.kazakhstan: {"name": "kazahkstan", "file": "kazahkstan.png"},
@@ -66,4 +66,4 @@ class Flag:
 
     def get_image(self, flag):
         file = "./image/Flags/{}".format(self.flags[flag]["file"])
-        return cairo.ImageSurface.create_from_png(file)
+	return cairo.ImageSurface.create_from_png(file)
