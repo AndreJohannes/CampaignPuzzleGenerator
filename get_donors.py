@@ -41,7 +41,7 @@ class Donors:
         else:
             for row in values:
                 add_row = {"name": row[0], "country": row[2], "amount": row[3],
-                           "flag": flag_manager.get_flag(row[2])}
+                           "flag": flag_manager.get_flag(row[2].strip())}
                 retArray.append(add_row)
 
         return retArray
