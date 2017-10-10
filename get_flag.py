@@ -29,6 +29,8 @@ class Flag:
         france = 22
         bulgaria = 23
         malaysia = 24
+        belgium = 25
+        saudi_arabia = 26
 
     flags = {
         Flags.no_country: {"name": "unknown", "file": "white.png"},
@@ -44,7 +46,7 @@ class Flag:
         Flags.newzealand: {"name": "new zealand", "file": "newzealand.png"},
         Flags.argentina: {"name": "argentina", "file": "argentina.png"},
         Flags.honduras: {"name": "honduras", "file": "honduras.png"},
-        Flags.kazakhstan: {"name": "kazahkstan", "file": "kazahkstan.png"},
+        Flags.kazakhstan: {"name": "kazakhstan", "file": "kazakhstan.png"},
         Flags.russia: {"name": "russia", "file": "russia.png"},
         Flags.sweden: {"name": "sweden", "file": "sweden.png"},
         Flags.norway: {"name": "norway", "file": "norway.png"},
@@ -55,7 +57,9 @@ class Flag:
         Flags.netherlands: {"name": "netherlands", "file": "netherlands.png"},
         Flags.france: {"name": "france", "file": "france.png"},
         Flags.bulgaria: {"name": "bulgaria", "file": "bulgaria.png"},
-        Flags.malaysia: {"name": "malaysia", "file": "malaysia.png"}
+        Flags.malaysia: {"name": "malaysia", "file": "malaysia.png"},
+        Flags.belgium: {"name": "belgium", "file": "belgium.png"},
+        Flags.saudi_arabia: {"name": "saudi arabia", "file": "saudi_arabia.png"}
     }
 
     def get_flag(self, name):
