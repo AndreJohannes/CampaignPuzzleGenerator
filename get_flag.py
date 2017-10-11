@@ -31,6 +31,7 @@ class Flag:
         malaysia = 24
         belgium = 25
         saudi_arabia = 26
+        israel = 27
 
     flags = {
         Flags.no_country: {"name": "unknown", "file": "white.png"},
@@ -59,7 +60,8 @@ class Flag:
         Flags.bulgaria: {"name": "bulgaria", "file": "bulgaria.png"},
         Flags.malaysia: {"name": "malaysia", "file": "malaysia.png"},
         Flags.belgium: {"name": "belgium", "file": "belgium.png"},
-        Flags.saudi_arabia: {"name": "saudi arabia", "file": "saudi_arabia.png"}
+        Flags.saudi_arabia: {"name": "saudi arabia", "file": "saudi_arabia.png"},
+        Flags.israel: {"name": "israel", "file": "israel.png"}
     }
 
     def get_flag(self, name):
